@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+
+
+        
+        :root {
+            --primary-color: #1a4d6f; /* Dark Blue from the video header */
+            --secondary-color: #007bff; /* A standard button/link blue */
+            --accent-color: #f7a072; /* Subtle accent for cards/divs */
+            --text-color: #333;
+            --light-bg: #ffffff; /* Use white for main content background */
+            --grey-bg: #f4f4f4; /* Light gray for body background */
+            --white: #ffffff;
+            --container-width: 900px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            background-color: var(--grey-bg);
+            /* Enable smooth scrolling for nav links */
+            scroll-behavior: smooth; 
+            padding-top: 60px; /* Space for the fixed navigation bar */
+        }
+
+        
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        
+        .header {
+            background-color: var(--primary-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: var(--container-width);
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav ul li {
+            margin-left: 25px;
+        }
+
+        .nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+
+        .nav ul li a:hover {
+            color: var(--accent-color); 
+        }
+
+        
+        section {
+            padding: 60px 0;
+            text-align: center;
+            background-color: var(--light-bg);
+            border-bottom: 1px solid #ddd; 
+        }
+        
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        
+        #about p {
+            max-width: 600px;
+            margin: 15px auto 40px auto;
+            line-height: 1.6;
+        }
+        
+        .profile-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid var(--accent-color); 
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        
+        #skills table {
+            width: 100%;
+            max-width: 450px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden; 
+        }
+
+        #skills th, #skills td {
+            border: none; 
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        #skills th {
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-weight: 700;
+            text-align: center;
+        }
+
+        #skills tr:nth-child(even) {
+            background-color: var(--grey-bg);
+        }
+
+       
+        .project-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            width: 100%;
+            max-width: 400px;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card-image {
+            height: 200px;
+            background-color: #ccc;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: #555;
+        }
+        
+        .project-card-image.p1 {
+            background: linear-gradient(135deg, #f7a072, #ec7c4a);
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .project-card-image.p2 {
+            background: linear-gradient(135deg, #1f4068, #162447);
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .project-card-content {
+            padding: 20px;
+        }
+
+        .project-card-content h4 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .project-card-content p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        
+        #contact form {
+            width: 100%;
+            max-width: 500px;
+            margin: 30px auto 0 auto;
+            padding: 30px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            text-align: left;
+        }
+
+        .form-group {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+
+        label {
+            flex: 1; 
+            padding-top: 8px;
+            font-weight: 500;
+        }
+
+        input[type="text"], input[type="email"], textarea {
+            flex: 3; 
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .submit-wrapper {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 10px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #113854; 
+        }
+        
+      
+        .footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .nav ul {
+                padding-top: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav ul li {
+                margin: 0 10px 5px 10px;
+            }
+            
+            .form-group {
+                flex-direction: column;
+            }
+            
+            label {
+                padding-top: 0;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">My Portfolio</a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section id="about" class="container">
+        <h2>About Me</h2>
+        <div class="profile-wrapper">
+            <div class="profile-image">
+                <img src="image/portfolio image .jpg" alt="Aryan Baghel Profile Image">
+            </div>
+        </div>
+        <p>
+            Hello, my name is Aryan Baghel. I am an 18-year-old aspiring student who is eager to learn many new languages and work on wonderful projects. I am passionate about web development and building creative projects.
+        </p>
+    </section>
+
+    <section id="skills" class="container">
+        <h2>My Skills</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Skill</th>
+                    <th>Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>HTML</td>
+                    <td>Expert</td>
+                </tr>
+                <tr>
+                    <td>CSS</td>
+                    <td>Beginner</td>
+                </tr>
+                <tr>
+                    <td>JavaScript</td>
+                    <td>Yet to start learning</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="projects" class="container">
+        <h2>My Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-card-image p1">Project 1 Placeholder</div>
+                <div class="project-card-content">
+                    <h4>Portfolio Website</h4>
+                    <p>A personal one-page website to showcase your bio, skills, and contact details, demonstrating proficiency in HTML & CSS.</p>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-card-image p2">Project 2 Placeholder</div>
+                <div class="project-card-content">
+                    <h4>Simple Landing Page</h4>
+                    <p>A responsive landing page design focusing on modern layouts using Flexbox and CSS media queries.</p>
+                </div>
+            </div>
+            
+            </div>
+    </section>
+
+    <section id="contact" class="container">
+        <h2>Contact Me</h2>
+        <form>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" placeholder="Enter your message"></textarea>
+            </div>
+            <div class="submit-wrapper">
+                <input type="submit" value="Send">
+            </div>
+        </form>
+    </section>
+    
+    <footer class="footer">
+        &copy; 2025 My Portfolio. All rights reserved.
+    </footer>
+</body>
+</html>
